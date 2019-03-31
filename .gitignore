@@ -12,3 +12,4 @@ tests
 jest.config.js
 package-lock.json
 .eslintignore
+.idea
