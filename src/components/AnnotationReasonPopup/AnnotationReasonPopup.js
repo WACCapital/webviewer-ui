@@ -38,11 +38,9 @@ class AnnotationReasonPopup extends React.Component {
   }
 
   applyReason = reason => {
-    // Close the annotation
     const {annotation, closeElement} = this.props;
     annotation.Reason = reason;
     closeElement('annotationPopup');
-    console.log(annotation);
   };
 
   render() {
@@ -51,6 +49,7 @@ class AnnotationReasonPopup extends React.Component {
     const currentReason = annotation.Reason;
     const definedReasons = core.getCurrentReasons();
 
+    // TODO - If annotation isn't typeof RedactionAnnotation, return null;
     if (isDisabled) {
       return null;
     }
