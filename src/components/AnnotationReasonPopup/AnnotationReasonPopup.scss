@@ -2,6 +2,90 @@
 
 .AnnotationReasonPopup {
   @extend %popup-mobile;
-
   margin: -5px;
+
+  $_gutter_width: 10px;
+  $_white_smoke: #f5f5f5;
+  $_input_height: 30px;
+
+  .wrapper{
+    font-size: 14px;
+    max-width: 300px;
+  }
+
+  .reasonTitle{
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    padding: $_gutter_width $_gutter_width 5px;
+    font-size: 12px;
+    line-height: 1;
+    background-color: var(--button-active-color);
+    border-radius: 5px 5px 0 0;
+  }
+
+  .reasonsList{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li:not(.input-item){
+      padding: $_gutter_width/1.5 $_gutter_width;
+      border-top: 1px solid $gray20;
+      cursor: pointer;
+
+      &:hover{
+        background-color: $_white_smoke;
+      }
+    }
+    .input-item{
+      display: flex;
+      width: 100%;
+      border-top: 1px solid $gray20;
+      border-bottom: 1px solid $gray20;
+      border-radius: 0 0 5px 5px;
+
+      .input-wrapper{
+        flex: 1;
+
+        input{
+          padding: 0 $_gutter_width;
+          border: none;
+          background-clip: padding-box;  // Remove iOS inner box shadow
+          border-radius: 0 0 0 5px;
+          height: $_input_height;
+
+          &::placeholder{
+            opacity: 1;
+            color: var(--text-color);;
+          }
+
+          &:hover{
+            background-color: $_white_smoke;
+          }
+          &:focus{
+            outline: none;
+          }
+        }
+      }
+
+      .button-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: $_input_height;
+        border-left: 1px solid var(--border-color);
+        background: #f5f5f5;
+        background: var(--secondary-color);
+        cursor: pointer;
+        border-radius: 0 0 5px 0;
+
+        .button-save{
+          pointer-events: none;
+          color: var(--icon-color);
+        }
+      }
+    }
+  }
 }

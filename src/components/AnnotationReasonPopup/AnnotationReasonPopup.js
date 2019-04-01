@@ -1,76 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import StylePopup from 'components/StylePopup';
 
 import core from 'core';
 import getClassName from 'helpers/getClassName';
-import { mapAnnotationToKey } from 'constants/map';
+import {mapAnnotationToKey} from 'constants/map';
 import actions from 'actions';
 import selectors from 'selectors';
 
 import './AnnotationReasonPopup.scss';
 
+/*
+    We need to do a couple of things for this popup to be successful
+     - Popup should ingest some predefined values
+     - Popup should return a value on some explicit save
+ */
+
 class AnnotationReasonPopup extends React.Component {
-    static propTypes = {
-        isDisabled: PropTypes.bool,
-        annotation: PropTypes.object.isRequired,
-        style: PropTypes.object.isRequired,
-        closeElement: PropTypes.func.isRequired
-    };
+  static propTypes = {
+    isDisabled: PropTypes.bool,
+    annotation: PropTypes.object.isRequired,
+    closeElement: PropTypes.func.isRequired
+  };
 
-    handleStyleChange = (property, value) => {
-        const { annotation } = this.props;
+  render() {
+    const {isDisabled, annotation, style, closeElement} = this.props;
+    const className = getClassName('Popup AnnotationReasonPopup', this.props);
+    const definedReasons = ['Reason 1', 'Reason 2', 'Reason 3'];
 
-        // Set annotation style
-        core.setAnnotationStyles(annotation, oldStyle => ({
-            ...oldStyle,
-            [property]: value
-        }));
-
-        // Set the corresponding tool style
-        const tool = core.getTool(annotation.ToolName);
-        if (tool) {
-            tool.setStyles(oldStyle => ({
-                ...oldStyle,
-                [property]: value
-            }));
-        }
-    };
-
-    render() {
-        const { isDisabled, annotation, style, closeElement } = this.props;
-        const isFreeText = annotation instanceof window.Annotations.FreeTextAnnotation && annotation.getIntent() === window.Annotations.FreeTextAnnotation.Intent.FreeText;
-        const className = getClassName('Popup AnnotationReasonPopup', this.props);
-        const hideSlider = annotation instanceof window.Annotations.RedactionAnnotation;
-
-        const colorMapKey = mapAnnotationToKey(annotation);
-
-        if (isDisabled) {
-            return null;
-        }
-
-        return(
-            <div className={className} data-element="AnnotationReasonPopup" onClick={() => closeElement('annotationPopup')}>
-                <StylePopup
-                    colorMapKey={colorMapKey}
-                    style={style}
-                    isFreeText={isFreeText}
-                    onStyleChange={this.handleStyleChange}
-                    hideSlider={hideSlider}
-                />
-            </div>
-        );
+    if (isDisabled) {
+      return null;
     }
+
+    // TODO - Close the annotation using closeElement('annotationPopup')
+    return (
+      <div className={className} data-element="AnnotationReasonPopup">
+        <div className="wrapper">
+          <span className="reasonTitle">Redaction reason:</span>
+          <ul className="reasonsList">
+            {definedReasons.map(item => <li key={item}>{item}</li>)}
+            <li className="input-item">
+              <div className="input-wrapper">
+                <input type="text"
+                       placeholder="Enter custom reason"
+                       autoComplete="off"
+                />
+              </div>
+              <div className="button-wrapper">
+                <div className="button-save">Save</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    isDisabled: selectors.isElementDisabled(state, 'AnnotationReasonPopup')
+  isDisabled: selectors.isElementDisabled(state, 'AnnotationReasonPopup')
 });
 
 const mapDispatchToProps = {
-    closeElement: actions.closeElement
+  closeElement: actions.closeElement
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnnotationReasonPopup);
