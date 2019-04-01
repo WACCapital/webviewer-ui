@@ -89,6 +89,8 @@ import hideAnnotations from './hideAnnotations';
 import goToOutline from './goToOutline';
 import getViewerElement from './getViewerElement';
 import { addEventListener, removeEventListener } from './eventListener';
+import getCurrentReasons from './getCurrentReasons';
+import setCurrentReasons from './setCurrentReasons';
 
 export default {
   setToolMode,
@@ -182,5 +184,7 @@ export default {
   showAnnotations,
   hideAnnotations,
   goToOutline,
-  getViewerElement
+  getViewerElement,
+  getCurrentReasons,
+  setCurrentReasons,
 };

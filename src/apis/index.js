@@ -77,6 +77,8 @@ import enableRedaction from './enableRedaction';
 import disableRedaction from './disableRedaction';
 import enableLocalStorage from './enableLocalStorage';
 import disableLocalStorage from './disableLocalStorage';
+import getReasons from './getReasons';
+import setReasons from './setReasons';
 
 export default {
   loadDocument,
@@ -160,5 +162,7 @@ export default {
   enableRedaction,
   disableRedaction,
   enableLocalStorage,
-  disableLocalStorage
+  disableLocalStorage,
+  getReasons,
+  setReasons,
 };
