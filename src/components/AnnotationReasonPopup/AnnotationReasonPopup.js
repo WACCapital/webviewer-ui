@@ -25,8 +25,15 @@ class AnnotationReasonPopup extends React.Component {
     closeElement: PropTypes.func.isRequired
   };
 
+  applyReason = reason => {
+    // Close the annotation
+    const {annotation, closeElement} = this.props;
+    annotation.Reason = reason;
+    closeElement('annotationPopup');
+  };
+
   render() {
-    const {isDisabled, annotation, style, closeElement} = this.props;
+    const {isDisabled} = this.props;
     const className = getClassName('Popup AnnotationReasonPopup', this.props);
     const definedReasons = ['Reason 1', 'Reason 2', 'Reason 3'];
 
@@ -34,13 +41,18 @@ class AnnotationReasonPopup extends React.Component {
       return null;
     }
 
-    // TODO - Close the annotation using closeElement('annotationPopup')
+    // TODO - create a sub-component to pass handler and use props as the arguments
+    // @see https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
     return (
       <div className={className} data-element="AnnotationReasonPopup">
         <div className="wrapper">
           <span className="reasonTitle">Redaction reason:</span>
           <ul className="reasonsList">
-            {definedReasons.map(item => <li key={item}>{item}</li>)}
+            {definedReasons.map(item =>
+              <li key={item} onClick={() => {
+                this.applyReason(item);
+              }}
+              >{item}</li>)}
             <li className="input-item">
               <div className="input-wrapper">
                 <input type="text"
@@ -49,7 +61,10 @@ class AnnotationReasonPopup extends React.Component {
                 />
               </div>
               <div className="button-wrapper">
-                <div className="button-save">Save</div>
+                <div className="button-save" onClick={() => {
+                  this.applyReason('TODO - UPDATE');
+                }}
+                >Save</div>
               </div>
             </li>
           </ul>

@@ -204,7 +204,7 @@ class AnnotationPopup extends React.PureComponent {
                 <ActionButton dataElement="annotationRedactButton" title="action.apply" img="ic_check_black_24px" onClick={this.redactAnnotation} />
               }
               {canModify &&
-                <ActionButton dataElement="annotationReasonsButton" title="action.reason" img="ic_delete_black_24px" onClick={this.openReasonPopup} />
+                <ActionButton dataElement="annotationReasonsButton" title="action.reason" img="ic_annotation_redact_black_24px" onClick={this.openReasonPopup} />
               }
               {canModify &&
                 <ActionButton dataElement="annotationDeleteButton" title="action.delete" img="ic_delete_black_24px" onClick={this.deleteAnnotation} />
