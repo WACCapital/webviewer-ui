@@ -11,7 +11,6 @@ import './AnnotationReasonPopup.scss';
 
 /**
  * TODO:
- *  - Fire some type of event letting the annotation manager know that the annotation was changed?
  *  - Create a sub-component to pass handler and use props as the arguments for input
  *    @see https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
  */
@@ -40,7 +39,9 @@ class AnnotationReasonPopup extends React.Component {
   applyReason = reason => {
     const {annotation, closeElement} = this.props;
     annotation.Reason = reason;
+    core.deselectAnnotation(annotation);
     closeElement('annotationPopup');
+    core.getAnnotationManager().trigger('annotationChanged', [[annotation], 'modify']);
   };
 
   render() {
