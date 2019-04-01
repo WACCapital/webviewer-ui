@@ -4,17 +4,11 @@ import {connect} from 'react-redux';
 
 import core from 'core';
 import getClassName from 'helpers/getClassName';
-import {mapAnnotationToKey} from 'constants/map';
 import actions from 'actions';
 import selectors from 'selectors';
 
 import './AnnotationReasonPopup.scss';
 
-/*
-    We need to do a couple of things for this popup to be successful
-     - Popup should ingest some predefined values
-     - Popup should return a value on some explicit save
- */
 
 class AnnotationReasonPopup extends React.Component {
   static propTypes = {
@@ -28,6 +22,7 @@ class AnnotationReasonPopup extends React.Component {
     const {annotation, closeElement} = this.props;
     annotation.Reason = reason;
     closeElement('annotationPopup');
+    // TODO - Fire some type of event letting the annotation manager know that the annotation was changed?
   };
 
   render() {
