@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import StylePopup from 'components/StylePopup';
-
 import core from 'core';
 import getClassName from 'helpers/getClassName';
 import {mapAnnotationToKey} from 'constants/map';
@@ -35,10 +33,14 @@ class AnnotationReasonPopup extends React.Component {
   render() {
     const {isDisabled} = this.props;
     const className = getClassName('Popup AnnotationReasonPopup', this.props);
-    const definedReasons = ['Reason 1', 'Reason 2', 'Reason 3'];
+    const definedReasons = core.getReasons();
 
     if (isDisabled) {
       return null;
+    }
+
+    if (definedReasons.constructor !== Array){
+      console.warn('Reasons expects an array, you passed', typeof(definedReasons), definedReasons);
     }
 
     // TODO - create a sub-component to pass handler and use props as the arguments
