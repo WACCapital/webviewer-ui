@@ -8,12 +8,12 @@
   $_white_smoke: #f5f5f5;
   $_input_height: 30px;
 
-  .wrapper{
+  .wrapper {
     font-size: 14px;
     max-width: 300px;
   }
 
-  .reasonTitle{
+  .reasonTitle {
     text-transform: uppercase;
     display: block;
     font-weight: bold;
@@ -24,52 +24,55 @@
     border-radius: 5px 5px 0 0;
   }
 
-  .reasonsList{
+  .reasonsList {
     list-style: none;
     margin: 0;
     padding: 0;
 
-    li:not(.input-item){
+    li:not(.input-item) {
       padding: $_gutter_width/1.5 $_gutter_width;
       border-top: 1px solid $gray20;
       cursor: pointer;
 
-      &:hover{
+      &:hover,
+      &.current {
         background-color: $_white_smoke;
       }
     }
-    .input-item{
+
+    .input-item {
       display: flex;
       width: 100%;
       border-top: 1px solid $gray20;
       border-bottom: 1px solid $gray20;
       border-radius: 0 0 5px 5px;
 
-      .input-wrapper{
+      .input-wrapper {
         flex: 1;
 
-        input{
+        input {
           padding: 0 $_gutter_width;
           border: none;
-          background-clip: padding-box;  // Remove iOS inner box shadow
+          background-clip: padding-box; // Remove iOS inner box shadow
           border-radius: 0 0 0 5px;
           height: $_input_height;
 
-          &::placeholder{
+          &::placeholder {
             opacity: 1;
             color: var(--text-color);;
           }
 
-          &:hover{
+          &:hover {
             background-color: $_white_smoke;
           }
-          &:focus{
+
+          &:focus {
             outline: none;
           }
         }
       }
 
-      .button-wrapper{
+      .button-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -81,7 +84,7 @@
         cursor: pointer;
         border-radius: 0 0 5px 0;
 
-        .button-save{
+        .button-save {
           color: var(--icon-color);
         }
       }
