@@ -41,7 +41,7 @@ class AnnotationReasonPopup extends React.Component {
     annotation.Reason = reason;
     core.deselectAnnotation(annotation);
     closeElement('annotationPopup');
-    core.getAnnotationManager().trigger('annotationChanged', [[annotation], 'modify']);
+    //core.getAnnotationManager().trigger('annotationChanged', [[annotation], 'modify']);
   };
 
   render() {
