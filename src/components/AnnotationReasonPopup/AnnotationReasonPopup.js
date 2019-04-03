@@ -55,9 +55,9 @@ class AnnotationReasonPopup extends React.Component {
       return null;
     }
 
-    if (definedReasons.constructor !== Array) {
-      console.warn('Reasons expects an array, you passed', typeof (definedReasons), definedReasons);
-    }
+    // if (definedReasons.constructor !== Array) {
+    //   console.warn('Reasons expects an array, you passed', typeof (definedReasons), definedReasons);
+    // }
 
     return (
       <div className={className} data-element="AnnotationReasonPopup">
