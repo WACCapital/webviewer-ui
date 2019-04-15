@@ -1,5 +1,35 @@
 @import '../../constants/styles';
 
+.search-result-wrapper {
+  display: flex;
+  align-items: center;
+
+  .input-wrapper {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 15%;
+    -ms-flex: 0 0 15%;
+    flex: 0 0 15%;
+    max-width: 15%;
+
+    label{
+      &.Input{
+        &:after,
+        &:before{
+          left: 50%;
+        }
+      }
+    }
+  }
+
+  .SearchResult {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 85%;
+    -ms-flex: 0 0 85%;
+    flex: 0 0 85%;
+    max-width: 85%;
+  }
+}
+
 .SearchResult {
   margin-top: -1px;
   padding: 10px;

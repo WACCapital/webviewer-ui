@@ -93,6 +93,7 @@
     "printTotalPageCount": "{{count}} page",
     "printTotalPageCount_plural": "{{count}} pages",
     "processing": "Traitement...",
+    "redactAll": "Sélectionner tous les résultats",
     "searching": "Recherche...",
     "searchPlaceholder": "Rechercher des commentaires ici...",
     "signHere": "Signer ici",

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
+import {translate} from 'react-i18next';
+import {connect} from 'react-redux';
 
+import Input from 'components/Input';
 import SearchResult from 'components/SearchResult';
 import ListSeparator from 'components/ListSeparator';
 import Button from 'components/Button';
 
 import core from 'core';
-import { isMobile, isTabletOrMobile } from 'helpers/device';
+import {isMobile, isTabletOrMobile} from 'helpers/device';
 import getClassName from 'helpers/getClassName';
 import actions from 'actions';
 import selectors from 'selectors';
@@ -25,28 +26,41 @@ class SearchPanel extends React.PureComponent {
     setActiveResultIndex: PropTypes.func.isRequired,
     closeElement: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.resultChildren = [];
   }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen && isTabletOrMobile()) {
-      this.props.closeElement('leftPanel');  
+      this.props.closeElement('leftPanel');
+    }
+    if (this.props.isSearching) {
+      this.resultChildren = [];
     }
   }
 
   onClickResult = (resultIndex, result) => {
-    const { setActiveResultIndex, closeElement } = this.props;
+    const {setActiveResultIndex, closeElement} = this.props;
 
     setActiveResultIndex(resultIndex);
     core.setActiveSearchResult(result);
-    
+
     if (isMobile()) {
       closeElement('searchPanel');
     }
-  }
+  };
+
+  onSelectResult = (resultIndex, result) => {
+    // TODO - Review this implementation
+  };
 
   onClickClose = () => {
     this.props.closeElement('searchPanel');
-  }
+  };
 
   renderListSeparator = (prevResult, currResult) => {
     const isFirstResult = prevResult === currResult;
@@ -59,13 +73,19 @@ class SearchPanel extends React.PureComponent {
         />
       );
     }
-  
+
     return null;
-  }
+  };
+
+  onSelectAll = e => {
+    this.resultChildren.forEach(ref => {
+      ref.setChecked(e.target.checked);
+    });
+  };
 
   render() {
-    const { isDisabled, t, results, isSearching, noResult } = this.props;
-    
+    const {isDisabled, t, results, isSearching, noResult} = this.props;
+
     if (isDisabled) {
       return null;
     }
@@ -74,21 +94,43 @@ class SearchPanel extends React.PureComponent {
 
     return (
       <div className={className} data-element="searchPanel" onClick={e => e.stopPropagation()}>
-        <Button className="close-btn hide-in-desktop hide-in-tablet" dataElement="searchPanelCloseButton" img="ic_close_black_24px" onClick={this.onClickClose} />
+        <Button className="close-btn hide-in-desktop hide-in-tablet" dataElement="searchPanelCloseButton"
+                img="ic_close_black_24px" onClick={this.onClickClose}
+        />
         <div className="results">
           {isSearching &&
-            <div className="info">{t('message.searching')}</div>
+          <div className="info">{t('message.searching')}</div>
           }
           {noResult &&
-            <div className="info">{t('message.noResults')}</div>
+          <div className="info">{t('message.noResults')}</div>
+          }
+          {results &&
+          <div className="break">{''}</div>
+          }
+          {results &&
+          <div className="redact-all">
+            <Input id={`redaction-selection-all`}
+                   type="checkbox"
+                   onChange={this.onSelectAll}
+                   label={t('message.redactAll')}
+            />
+          </div>
+          }
+          {results &&
+          <div className="break">{''}</div>
           }
           {results.map((result, i) => {
             const prevResult = i === 0 ? results[0] : results[i - 1];
 
-            return(
+            return (
               <React.Fragment key={i}>
                 {this.renderListSeparator(prevResult, result)}
-                <SearchResult result={result} index={i} onClickResult={this.onClickResult} />
+                <SearchResult ref={ref => this.resultChildren[i] = ref}
+                              result={result}
+                              index={i}
+                              onClickResult={this.onClickResult}
+                              onSelectResult={this.onSelectResult}
+                />
               </React.Fragment>
             );
           })}
