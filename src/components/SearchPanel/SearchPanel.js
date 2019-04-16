@@ -30,7 +30,10 @@ class SearchPanel extends React.PureComponent {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      checked: (props.results.length ? [...Array(props.results.length)].map(() => false) : [])
+    };
+    this.hasUpdatedState = false;
     this.resultChildren = [];
   }
 
@@ -38,8 +41,14 @@ class SearchPanel extends React.PureComponent {
     if (!prevProps.isOpen && this.props.isOpen && isTabletOrMobile()) {
       this.props.closeElement('leftPanel');
     }
-    if (this.props.isSearching) {
+    if (this.props.isSearching || !this.props.results.length) {
       this.resultChildren = [];
+      this.hasUpdatedState = false;
+    } else if(!this.hasUpdatedState) {
+      this.hasUpdatedState = true;
+      this.setState({
+        checked: (this.props.results.length ? [...Array(this.props.results.length)].map(() => false) : [])
+      });
     }
   }
 
@@ -55,7 +64,7 @@ class SearchPanel extends React.PureComponent {
   };
 
   onSelectResult = (resultIndex, result) => {
-    // TODO - Review this implementation
+    // TODO - use resultIndex to modify the resultsChildren array
   };
 
   onClickClose = () => {
@@ -78,8 +87,8 @@ class SearchPanel extends React.PureComponent {
   };
 
   onSelectAll = e => {
-    this.resultChildren.forEach(ref => {
-      ref.setChecked(e.target.checked);
+    this.resultChildren.forEach((ref, i) => {
+      // TODO - Make this work
     });
   };
 
@@ -125,7 +134,9 @@ class SearchPanel extends React.PureComponent {
             return (
               <React.Fragment key={i}>
                 {this.renderListSeparator(prevResult, result)}
-                <SearchResult ref={ref => this.resultChildren[i] = ref}
+                <SearchResult ref={ref => {
+                  this.resultChildren[i] = ref;
+                }}
                               result={result}
                               index={i}
                               onClickResult={this.onClickResult}

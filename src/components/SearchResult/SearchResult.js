@@ -20,6 +20,7 @@ class SearchResult extends React.PureComponent {
 
   constructor(props) {
     super(props);
+
     this.selectionInput = React.createRef();
   }
 
