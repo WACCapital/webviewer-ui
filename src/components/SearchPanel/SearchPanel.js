@@ -31,7 +31,7 @@ class SearchPanel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      checked: (props.results.length ? [...Array(props.results.length)].map(() => false) : [])
+      checked: this.generateCheckedArray(props.results.length, false)
     };
     this.hasUpdatedState = false;
     this.resultChildren = [];
@@ -42,15 +42,21 @@ class SearchPanel extends React.PureComponent {
       this.props.closeElement('leftPanel');
     }
     if (this.props.isSearching || !this.props.results.length) {
+      // Clear existing results
       this.resultChildren = [];
       this.hasUpdatedState = false;
-    } else if(!this.hasUpdatedState) {
+    } else if (!this.hasUpdatedState) {
+      // Update the state
       this.hasUpdatedState = true;
       this.setState({
-        checked: (this.props.results.length ? [...Array(this.props.results.length)].map(() => false) : [])
+        checked: this.generateCheckedArray(this.props.results.length, false)
       });
     }
   }
+
+  generateCheckedArray = (length, value) => {
+    return (length ? [...Array(length)].map(() => value) : []);
+  };
 
   onClickResult = (resultIndex, result) => {
     const {setActiveResultIndex, closeElement} = this.props;
@@ -63,8 +69,13 @@ class SearchPanel extends React.PureComponent {
     }
   };
 
-  onSelectResult = (resultIndex, result) => {
-    // TODO - use resultIndex to modify the resultsChildren array
+  onSelectResult = (resultIndex, result, value) => {
+    this.setState(state => {
+      state.checked[resultIndex] = value;
+      return {
+        checked: state.checked
+      };
+    });
   };
 
   onClickClose = () => {
@@ -87,8 +98,8 @@ class SearchPanel extends React.PureComponent {
   };
 
   onSelectAll = e => {
-    this.resultChildren.forEach((ref, i) => {
-      // TODO - Make this work
+    this.setState({
+      checked: this.generateCheckedArray(this.props.results.length, e.target.checked)
     });
   };
 
@@ -134,13 +145,12 @@ class SearchPanel extends React.PureComponent {
             return (
               <React.Fragment key={i}>
                 {this.renderListSeparator(prevResult, result)}
-                <SearchResult ref={ref => {
-                  this.resultChildren[i] = ref;
-                }}
+                <SearchResult ref={ref => this.resultChildren[i] = ref}
                               result={result}
                               index={i}
                               onClickResult={this.onClickResult}
                               onSelectResult={this.onSelectResult}
+                              checked={this.state.checked[i]}
                 />
               </React.Fragment>
             );

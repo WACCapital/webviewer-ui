@@ -16,12 +16,19 @@ class SearchResult extends React.PureComponent {
     activeResultIndex: PropTypes.number.isRequired,
     onClickResult: PropTypes.func.isRequired,
     onSelectResult: PropTypes.func.isRequired,
+    checked: PropTypes.bool
   };
 
   constructor(props) {
     super(props);
 
     this.selectionInput = React.createRef();
+  }
+
+  componentDidUpdate() {
+    if (typeof this.props.checked === 'boolean' && this.selectionInput.current.checked !== this.props.checked) {
+      this.selectionInput.current.checked = this.props.checked;
+    }
   }
 
   onClick = () => {
@@ -31,11 +38,7 @@ class SearchResult extends React.PureComponent {
 
   onSelect = () => {
     const {onSelectResult, index, result} = this.props;
-    onSelectResult(index, result);
-  };
-
-  setChecked = value => {
-    this.selectionInput.checked(value);
+    onSelectResult(index, result, this.selectionInput.current.checked);
   };
 
   renderContent = () => {
