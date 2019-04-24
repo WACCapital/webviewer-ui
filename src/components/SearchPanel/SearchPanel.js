@@ -72,11 +72,12 @@ class SearchPanel extends React.PureComponent {
   };
 
   onSelectResult = (resultIndex, result, value) => {
-    this.setState(state => {
-      state.checked[resultIndex] = value;
+    this.setState(prevState => {
+      let newCheckedState = prevState.checked.slice();
+      newCheckedState[resultIndex] = value;
       return {
-        checked: state.checked,
-        isChanged: (value || state.checked.indexOf(true) !== -1)
+        checked: newCheckedState,
+        isChanged: (value || newCheckedState.indexOf(true) !== -1)
       };
     });
   };
@@ -142,7 +143,7 @@ class SearchPanel extends React.PureComponent {
                    onChange={this.onSelectAll}
                    label={t('message.redactAll')}
             />
-            <button className = {this.state.isChanged ? '':'disabled'}
+            <button className={this.state.isChanged ? '' : 'disabled'}
                     onMouseDown={this.onApplyRedactions}
             >{t('action.redact')}</button>
           </div>

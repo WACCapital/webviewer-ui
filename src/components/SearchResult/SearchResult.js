@@ -69,6 +69,7 @@ class SearchResult extends React.PureComponent {
                  type="checkbox"
                  onChange={this.onSelect}
                  label=""
+                 defaultChecked={this.props.checked}
           />
         </div>
         <div className={`SearchResult ${index === activeResultIndex ? 'selected' : ''}`} onClick={this.onClick}>
