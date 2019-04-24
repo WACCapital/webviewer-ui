@@ -31,7 +31,8 @@ class SearchPanel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      checked: this.generateCheckedArray(props.results.length, false)
+      checked: this.generateCheckedArray(props.results.length, false),
+      isChanged: false
     };
     this.hasUpdatedState = false;
     this.resultChildren = [];
@@ -49,7 +50,8 @@ class SearchPanel extends React.PureComponent {
       // Update the state
       this.hasUpdatedState = true;
       this.setState({
-        checked: this.generateCheckedArray(this.props.results.length, false)
+        checked: this.generateCheckedArray(this.props.results.length, false),
+        isChanged: false
       });
     }
   }
@@ -73,13 +75,18 @@ class SearchPanel extends React.PureComponent {
     this.setState(state => {
       state.checked[resultIndex] = value;
       return {
-        checked: state.checked
+        checked: state.checked,
+        isChanged: (value || state.checked.indexOf(true) !== -1)
       };
     });
   };
 
   onClickClose = () => {
     this.props.closeElement('searchPanel');
+  };
+
+  onApplyRedactions = () => {
+    console.log('Apply redactions');
   };
 
   renderListSeparator = (prevResult, currResult) => {
@@ -99,7 +106,8 @@ class SearchPanel extends React.PureComponent {
 
   onSelectAll = e => {
     this.setState({
-      checked: this.generateCheckedArray(this.props.results.length, e.target.checked)
+      checked: this.generateCheckedArray(this.props.results.length, e.target.checked),
+      isChanged: e.target.checked
     });
   };
 
@@ -124,19 +132,22 @@ class SearchPanel extends React.PureComponent {
           {noResult &&
           <div className="info">{t('message.noResults')}</div>
           }
-          {results &&
+          {results.length > 0 &&
           <div className="break">{''}</div>
           }
-          {results &&
+          {results.length > 0 &&
           <div className="redact-all">
             <Input id={`redaction-selection-all`}
                    type="checkbox"
                    onChange={this.onSelectAll}
                    label={t('message.redactAll')}
             />
+            <button className = {this.state.isChanged ? '':'disabled'}
+                    onMouseDown={this.onApplyRedactions}
+            >{t('action.redact')}</button>
           </div>
           }
-          {results &&
+          {results.length > 0 &&
           <div className="break">{''}</div>
           }
           {results.map((result, i) => {
