@@ -71,4 +71,4 @@ const setRedactionStyle = annotation => {
       annotation.FillColor = new Annotations.Color(fillColor['R'], fillColor['G'], fillColor['B'], fillColor['A']);
     }
   }
-}
+};

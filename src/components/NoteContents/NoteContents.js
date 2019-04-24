@@ -86,7 +86,7 @@ class NoteContents extends React.Component {
               onBlur={closeEditing}         
               defaultValue={contents} 
               placeholder={`${t('action.comment')}...`}
-            />
+          />
             <span className="buttons">
               <button className = {this.state.isChanged ? '':'disabled'} onMouseDown={this.setContents}>{t('action.save')}</button>
               <button onMouseDown={closeEditing}>{t('action.cancel')}</button>

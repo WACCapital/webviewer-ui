@@ -86,7 +86,7 @@ class SearchPanel extends React.PureComponent {
   };
 
   onApplyRedactions = () => {
-    console.log('Apply redactions');
+    // TODO - Apply redactions
   };
 
   renderListSeparator = (prevResult, currResult) => {
