@@ -7,9 +7,38 @@
   .container {
     @extend %modal-shared-container-style;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    height: 155px;
+    width: 500px;
+    padding: 10px;
+
+    .wrapper {
+      align-self: stretch;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      .header {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .buttons {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+
+        .Button {
+          font-size: 14px;
+        }
+
+        .Button:hover{
+          background: none;
+        }
+      }
+    }
   }
 }

@@ -8,6 +8,7 @@ import actions from 'actions';
 import selectors from 'selectors';
 
 import './AnnotationReasonPopup.scss';
+import {translate} from 'react-i18next';
 
 /**
  * TODO:
@@ -17,6 +18,7 @@ import './AnnotationReasonPopup.scss';
 class AnnotationReasonPopup extends React.Component {
   static propTypes = {
     isDisabled: PropTypes.bool,
+    t: PropTypes.func.isRequired,
     annotation: PropTypes.object.isRequired,
     closeElement: PropTypes.func.isRequired
   };
@@ -45,7 +47,7 @@ class AnnotationReasonPopup extends React.Component {
   };
 
   render() {
-    const {isDisabled, annotation} = this.props;
+    const {isDisabled, annotation, t} = this.props;
     const className = getClassName('Popup AnnotationReasonPopup', this.props);
     const currentReason = annotation.Reason;
     const definedReasons = core.getCurrentReasons();
@@ -74,7 +76,7 @@ class AnnotationReasonPopup extends React.Component {
             <li className="input-item">
               <div className="input-wrapper">
                 <input type="text"
-                       placeholder="Enter custom reason"
+                       placeholder={t('message.redactReasonCustom')}
                        autoComplete="off"
                        value={this.state.inputValue}
                        onChange={evt => this.updateInputValue(evt)}
@@ -109,4 +111,4 @@ const mapDispatchToProps = {
   closeElement: actions.closeElement
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnnotationReasonPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AnnotationReasonPopup));

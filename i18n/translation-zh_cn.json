@@ -95,6 +95,8 @@
     "printTotalPageCount_plural": "{{count}} 页",
     "processing": "正在处理…",
     "redactAll": "选择所有结果",
+    "redactAllVerification": "准备编辑",
+    "redactReasonCustom": "输入自定义原因",
     "searching": "正在搜索…",
     "searchPlaceholder": "在此处搜索注释…",
     "signHere": "在此处签名",

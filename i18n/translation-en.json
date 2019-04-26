@@ -95,6 +95,8 @@
     "printTotalPageCount_plural": "{{count}} pages",
     "processing": "Processing...",
     "redactAll": "Select all results",
+    "redactAllVerification": "Prepare redaction",
+    "redactReasonCustom": "Enter custom reason",
     "searching": "Searching...",
     "searchPlaceholder": "Search comments...",
     "signHere": "Sign here",
