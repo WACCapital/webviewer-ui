@@ -23,6 +23,7 @@ import ContextMenuPopup from 'components/ContextMenuPopup';
 import ToolStylePopup from 'components/ToolStylePopup';
 import SignatureModal from 'components/SignatureModal';
 import PrintModal from 'components/PrintModal';
+import RedactionModal from 'components/RedactionModal';
 import LoadingModal from 'components/LoadingModal';
 import ErrorModal from 'components/ErrorModal';
 import WarningModal from 'components/WarningModal';
@@ -117,6 +118,7 @@ class App extends React.PureComponent {
           <WarningModal />
           <PasswordModal />
           <ProgressModal />
+          <RedactionModal />
         </div>
 
         <PrintHandler />

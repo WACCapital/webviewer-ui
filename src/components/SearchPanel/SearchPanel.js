@@ -24,6 +24,7 @@ class SearchPanel extends React.PureComponent {
     isSearching: PropTypes.bool,
     noResult: PropTypes.bool,
     setActiveResultIndex: PropTypes.func.isRequired,
+    openElement: PropTypes.func.isRequired,
     closeElement: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired
   };
@@ -87,7 +88,8 @@ class SearchPanel extends React.PureComponent {
   };
 
   onApplyRedactions = () => {
-    // TODO - Apply redactions
+    const {openElement} = this.props;
+    openElement('redactionModal');
   };
 
   renderListSeparator = (prevResult, currResult) => {
@@ -184,6 +186,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setActiveResultIndex: actions.setActiveResultIndex,
   closeElement: actions.closeElement,
+  openElement: actions.openElement,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(SearchPanel));

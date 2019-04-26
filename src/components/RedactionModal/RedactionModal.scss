@@ -1,0 +1,15 @@
+@import '../../constants/styles';
+@import '../../constants/modal';
+
+.RedactionModal {
+  @extend %modal;
+
+  .container {
+    @extend %modal-shared-container-style;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+}
