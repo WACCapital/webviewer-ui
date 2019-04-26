@@ -4,6 +4,10 @@
 .RedactionModal {
   @extend %modal;
 
+  $_gutter_width: 10px;
+  $_white_smoke: #f5f5f5;
+  $_input_height: 30px;
+
   .container {
     @extend %modal-shared-container-style;
     display: flex;
@@ -12,6 +16,11 @@
     height: 155px;
     width: 500px;
     padding: 10px;
+
+    > * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
 
     .wrapper {
       align-self: stretch;
@@ -23,6 +32,95 @@
       .header {
         font-size: 16px;
         font-weight: 700;
+      }
+
+      .form-element{
+        display: flex;
+
+        select {
+          display: block;
+          width: 100%;
+        }
+
+        input {
+          display: block;
+          padding: 0 $_gutter_width;
+          border: 1px solid $gray20;
+          background-clip: padding-box; // Remove iOS inner box shadow
+          border-radius: 5px;
+          height: $_input_height;
+          width: 100%;
+
+          &::placeholder {
+            opacity: 1;
+            color: var(--text-color);
+          }
+
+          &:hover {
+            background-color: $_white_smoke;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .dropdown-wrapper{
+        user-select: none;
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+
+        .dropdown-header{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: $_input_height;
+          border: 1px solid $gray20;
+          border-radius: 5px;
+          cursor: default;
+          position: relative;
+          background-color: white;
+        }
+        .dropdown-title{
+          padding: 0 10px;
+          vertical-align: middle;
+          font-size: 11px;
+        }
+        .dropdown-list{
+          z-index: 10;
+          position: absolute;
+          width: 100%;
+          border: 1px solid rgb(223, 223, 223);
+          border-top: none;
+          border-bottom-right-radius: 3px;
+          border-bottom-left-radius: 3px;
+          background-color: white;
+          box-shadow: 0 2px 5px -1px rgb(232, 232, 232);
+          padding: 5px 0;
+          max-height: 215px;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          -webkit-overflow-scrolling: touch;
+          margin: 0;
+        }
+        .dropdown-list-item{
+          width: 100%;
+          padding: 8px 10px;
+          line-height: 1;
+          display: inline-block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          cursor: pointer;
+
+          &.selected{
+            background-color: $_white_smoke;
+          }
+          &:hover{
+            background-color: $_white_smoke;
+          }
+        }
       }
 
       .buttons {

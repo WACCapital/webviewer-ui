@@ -25,14 +25,25 @@ class RedactionModal extends React.PureComponent {
     this.elementName = 'redactionModal';
     this.state = {
       inputValue: '',
-      selectValue: ''
+      selectValue: '',
+      listOpen: false,
+      headerTitle: 'Predefined reasons'
     };
+    this.close = this.close.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen) {
       this.props.closeElements(['signatureModal', 'printModal', 'errorModal', 'loadingModal', 'printModal']);
     }
+    const {listOpen} = this.state;
+    setTimeout(() => {
+      if (listOpen) {
+        window.addEventListener('click', this.close);
+      } else {
+        window.removeEventListener('click', this.close);
+      }
+    }, 0);
   }
 
   handleSubmit = () => {
@@ -45,34 +56,64 @@ class RedactionModal extends React.PureComponent {
   };
   updateInputValue = event => {
     this.setState({
-      inputValue: event.target.value
+      inputValue: event.target.value,
+      selectValue: '',
+      headerTitle: 'Predefined reasons',
     });
   };
-  updateSelectValue = event => {
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.close);
+  }
+
+  close() {
     this.setState({
-      selectValue: event.target.value
+      listOpen: false
     });
-  };
+  }
+
+  selectItem(value) {
+    this.setState({
+      headerTitle: value,
+      listOpen: false,
+      selectValue: value,
+      inputValue: '',
+    });
+  }
+
+  toggleList() {
+    this.setState(prevState => ({
+      listOpen: !prevState.listOpen
+    }));
+  }
 
   renderAnnotationReasonContent = () => {
     const {t} = this.props;
+    const {listOpen, headerTitle} = this.state;
     const definedReasons = core.getCurrentReasons();
 
     return (
-      <div className="">
-        <select onChange={this.updateSelectValue}
-                value={this.state.selectValue}
-        >
-          {definedReasons.map(item =>
-            <option key={item}>{item}</option>)
-          }
-        </select>
-        <input type="text"
-               placeholder={t('message.redactReasonCustom')}
-               autoComplete="off"
-               value={this.state.inputValue}
-               onChange={this.updateInputValue}
-        />
+      <div>
+        <div className="dropdown-wrapper">
+          <div className="dropdown-header" onClick={() => this.toggleList()}>
+            <div className="dropdown-title">{headerTitle}</div>
+          </div>
+          {listOpen && <ul className="dropdown-list" onClick={e => e.stopPropagation()}>
+            {definedReasons.map(item => (
+              <li className="dropdown-list-item" key={item}
+                  onClick={() => this.selectItem(item)}
+              >{item}</li>
+            ))}
+          </ul>}
+        </div>
+        <div className="form-element">
+          <input type="text"
+                 placeholder={t('message.redactReasonCustom')}
+                 autoComplete="off"
+                 value={this.state.inputValue}
+                 onChange={this.updateInputValue}
+          />
+        </div>
       </div>
     );
   };
