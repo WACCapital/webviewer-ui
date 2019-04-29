@@ -7,17 +7,21 @@
   $_gutter_width: 10px;
   $_white_smoke: #f5f5f5;
   $_input_height: 30px;
+  $_govsd_light_blue: #00a5e4;
+  $_govsd_light_blue_dark: #2784be;
 
   .container {
     @extend %modal-shared-container-style;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 155px;
-    width: 500px;
+    min-height: 200px;
+    min-width: 300px;
+    max-width: 500px;
     padding: 10px;
+    font-size: 14px;
 
-    > * {
+    * {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
@@ -30,16 +34,20 @@
       position: relative;
 
       .header {
-        font-size: 16px;
+        font-size: 1.25em;
         font-weight: 700;
       }
 
-      .form-element{
-        display: flex;
+      .sub-text{
+        margin: .5em 0 1.5em;
+      }
 
-        select {
+      .form-element{
+
+        label{
+          font-weight: bold;
+          margin-bottom: 5px;
           display: block;
-          width: 100%;
         }
 
         input {
@@ -71,6 +79,7 @@
         position: relative;
         width: 100%;
         margin-bottom: 10px;
+        cursor: pointer;
 
         .dropdown-header{
           display: flex;
@@ -79,9 +88,12 @@
           height: $_input_height;
           border: 1px solid $gray20;
           border-radius: 5px;
-          cursor: default;
           position: relative;
           background-color: white;
+        }
+        .dropdown-label{
+          font-weight: bold;
+          margin-bottom: 5px;
         }
         .dropdown-title{
           padding: 0 10px;
@@ -107,6 +119,7 @@
         }
         .dropdown-list-item{
           width: 100%;
+          font-size: 11px;
           padding: 8px 10px;
           line-height: 1;
           display: inline-block;
@@ -124,17 +137,29 @@
       }
 
       .buttons {
-        position: absolute;
-        bottom: 0;
-        right: 0;
         display: flex;
+        margin: 1.5em 0 0;
 
         .Button {
-          font-size: 14px;
-        }
+          font-size: 1em;
+          outline: none;
+          margin: 0;
+          border-radius: 4px;
+          border: none;
+          min-width: 60px;
+          height: 32px;
 
-        .Button:hover{
-          background: none;
+          &.submit{
+            background-color: $_govsd_light_blue;
+            color: #ffffff;
+
+            &:hover{
+              background-color: $_govsd_light_blue_dark;
+            }
+          }
+          &.cancel{
+            margin-left: 10px;
+          }
         }
       }
     }

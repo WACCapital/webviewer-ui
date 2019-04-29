@@ -77,7 +77,15 @@
     "redaction": "Redigeren",
     "viewControlsOverlay": "Scherm opties",
     "minimizeButton": "Document normaal weergeven",
-    "measurementToolsButton": "Meetinstrumenten"
+    "measurementToolsButton": "Meetinstrumenten",
+    "redactionModal": {
+      "header": "Prepare Redaction",
+      "subText": "If you would like to specify a redaction reason, select a predefined reason or enter a custom reason.",
+      "predefinedLabel": "Predefined Reason",
+      "predefinedPlaceholder": "Select reason",
+      "customLabel": "Custom Reason",
+      "customPlaceholder": "Enter reason"
+    }
   },
   "message": {
     "badDocument": "Er is een fout opgetreden bij het laden van het document. Het document is corrupt of heeft een ongeldige indeling.",
@@ -96,8 +104,6 @@
     "printTotalPageCount_plural": "{{count}} pagina's",
     "processing": "Bezig...",
     "redactAll": "Selecteer alle resultaten",
-    "redactAllVerification": "Bereid de bewerking voor",
-    "redactReasonCustom": "Voer een aangepaste reden in",
     "searching": "Zoeken...",
     "searchPlaceholder": "Zoek opmerkingen...",
     "signHere": "Teken hier",

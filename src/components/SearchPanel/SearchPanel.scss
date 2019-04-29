@@ -5,6 +5,9 @@
 .SearchPanel {
   @extend %right-panel;
 
+  $_govsd_light_blue: #00a5e4;
+  $_govsd_light_blue_dark: #2784be;
+
   .results {
     flex: 1;
     overflow-y: auto;
@@ -52,15 +55,16 @@
       outline: none;
 
       margin: 0;
-      background-color: #00a5e4;
+      background-color: $_govsd_light_blue;
       border-radius: 4px;
       border: none;
       min-width: 60px;
       height: 32px;
       color: #ffffff;
+      cursor: pointer;
 
       &:hover {
-        cursor: pointer;
+        background-color: $_govsd_light_blue_dark;
       }
 
       &.disabled{

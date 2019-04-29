@@ -76,7 +76,15 @@
     "toolsButton": "Tools",
     "redaction": "Redaction",
     "viewControlsOverlay": "View controls",
-    "measurementToolsButton": "Measurement tools"
+    "measurementToolsButton": "Measurement tools",
+    "redactionModal": {
+      "header": "Prepare Redaction",
+      "subText": "If you would like to specify a redaction reason, select a predefined reason or enter a custom reason.",
+      "predefinedLabel": "Predefined Reason",
+      "predefinedPlaceholder": "Select reason",
+      "customLabel": "Custom Reason",
+      "customPlaceholder": "Enter reason"
+    }
   },
   "message": {
     "badDocument": "Failed to load document. The document is either corrupt or not valid.",
@@ -95,8 +103,6 @@
     "printTotalPageCount_plural": "{{count}} pages",
     "processing": "Processing...",
     "redactAll": "Select all results",
-    "redactAllVerification": "Prepare redaction",
-    "redactReasonCustom": "Enter custom reason",
     "searching": "Searching...",
     "searchPlaceholder": "Search comments...",
     "signHere": "Sign here",

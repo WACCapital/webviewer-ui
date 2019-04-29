@@ -76,7 +76,15 @@
     "toolsButton": "工具",
     "redaction": "新版本",
     "viewControlsOverlay": "调整浏览方式",
-    "measurementToolsButton": "测量工具"
+    "measurementToolsButton": "测量工具",
+    "redactionModal": {
+      "header": "Prepare Redaction",
+      "subText": "If you would like to specify a redaction reason, select a predefined reason or enter a custom reason.",
+      "predefinedLabel": "Predefined Reason",
+      "predefinedPlaceholder": "Select reason",
+      "customLabel": "Custom Reason",
+      "customPlaceholder": "Enter reason"
+    }
   },
   "message": {
     "badDocument": "无法加载文档，此文档已损坏或无效。",
@@ -95,8 +103,6 @@
     "printTotalPageCount_plural": "{{count}} 页",
     "processing": "正在处理…",
     "redactAll": "选择所有结果",
-    "redactAllVerification": "准备编辑",
-    "redactReasonCustom": "输入自定义原因",
     "searching": "正在搜索…",
     "searchPlaceholder": "在此处搜索注释…",
     "signHere": "在此处签名",

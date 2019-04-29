@@ -76,7 +76,15 @@
     "toolsButton": "Outils",
     "redaction": "Biffure",
     "viewControlsOverlay": "Contrôles de l'affichage",
-    "measurementToolsButton": "Outils de mesure"
+    "measurementToolsButton": "Outils de mesure",
+    "redactionModal": {
+      "header": "Prepare Redaction",
+      "subText": "If you would like to specify a redaction reason, select a predefined reason or enter a custom reason.",
+      "predefinedLabel": "Predefined Reason",
+      "predefinedPlaceholder": "Select reason",
+      "customLabel": "Custom Reason",
+      "customPlaceholder": "Enter reason"
+    }
   },
   "message": {
     "badDocument": "Échec du chargement du document. Le document est corrompu ou non valide.",
@@ -95,8 +103,6 @@
     "printTotalPageCount_plural": "{{count}} pages",
     "processing": "Traitement...",
     "redactAll": "Sélectionner tous les résultats",
-    "redactAllVerification": "Préparer des Rédaction",
-    "redactReasonCustom": "Entrez la raison personnalisée",
     "searching": "Recherche...",
     "searchPlaceholder": "Rechercher des commentaires ici...",
     "signHere": "Signer ici",

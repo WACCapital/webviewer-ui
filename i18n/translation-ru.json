@@ -76,7 +76,15 @@
     "toolsButton": "Инструменты",
     "redaction": "Редактировать",
     "viewControlsOverlay": "Изменить вид",
-    "measurementToolsButton": "Инструменты для замерения"
+    "measurementToolsButton": "Инструменты для замерения",
+    "redactionModal": {
+      "header": "Prepare Redaction",
+      "subText": "If you would like to specify a redaction reason, select a predefined reason or enter a custom reason.",
+      "predefinedLabel": "Predefined Reason",
+      "predefinedPlaceholder": "Select reason",
+      "customLabel": "Custom Reason",
+      "customPlaceholder": "Enter reason"
+    }
   },
   "message": {
     "badDocument": "Произошла ошибка при загрузке документа. Документ содержит ошибки или недостоверный.",
@@ -95,8 +103,6 @@
     "printTotalPageCount_plural": "{{count}} страниц",
     "processing": "Обработка документа...",
     "redactAll": "Выбрать все результаты",
-    "redactAllVerification": "Подготовить редакции",
-    "redactReasonCustom": "Введите пользовательскую причину",
     "searching": "Поиск...",
     "searchPlaceholder": "Поиск комментарий...",
     "signHere": "Распишетесь здесь",
