@@ -47,8 +47,10 @@ class RedactionModal extends React.PureComponent {
   }
 
   handleSubmit = () => {
-    const {closeElements} = this.props;
-    closeElements(this.elementName);
+    const reason = (this.state.inputValue !== '' ? this.state.inputValue : (
+      this.state.selectValue !== '' ? this.state.selectValue : null
+    ));
+    window.docViewer.trigger('bulkRedactionSubmit', reason);
   };
   handleCancel = () => {
     const {closeElements} = this.props;
@@ -95,19 +97,19 @@ class RedactionModal extends React.PureComponent {
     return (
       <div>
         {definedReasons.length > 0 &&
-          <div className="dropdown-wrapper">
-            <div className="dropdown-label">{t('component.redactionModal.predefinedLabel')}:</div>
-            <div className="dropdown-header" onClick={() => this.toggleList()}>
-              <div className="dropdown-title">{headerTitle}</div>
-            </div>
-            {listOpen && <ul className="dropdown-list" onClick={e => e.stopPropagation()}>
-              {definedReasons.map(item => (
-                <li className="dropdown-list-item" key={item}
-                    onClick={() => this.selectItem(item)}
-                >{item}</li>
-              ))}
-            </ul>}
+        <div className="dropdown-wrapper">
+          <div className="dropdown-label">{t('component.redactionModal.predefinedLabel')}:</div>
+          <div className="dropdown-header" onClick={() => this.toggleList()}>
+            <div className="dropdown-title">{headerTitle}</div>
           </div>
+          {listOpen && <ul className="dropdown-list" onClick={e => e.stopPropagation()}>
+            {definedReasons.map(item => (
+              <li className="dropdown-list-item" key={item}
+                  onClick={() => this.selectItem(item)}
+              >{item}</li>
+            ))}
+          </ul>}
+        </div>
         }
         <div className="form-element">
           <label htmlFor="customRedactionReason">{t('component.redactionModal.customLabel')}:</label>

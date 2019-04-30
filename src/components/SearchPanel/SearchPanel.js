@@ -39,6 +39,10 @@ class SearchPanel extends React.PureComponent {
     this.resultChildren = [];
   }
 
+  componentDidMount() {
+    window.docViewer.on('bulkRedactionSubmit', this.onBulkRedactionSubmit);
+  }
+
   componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen && isTabletOrMobile()) {
       this.props.closeElement('leftPanel');
@@ -56,6 +60,24 @@ class SearchPanel extends React.PureComponent {
       });
     }
   }
+
+  componentWillUnmount() {
+    window.docViewer.off('bulkRedactionSubmit', this.onBulkRedactionSubmit);
+  }
+
+  onBulkRedactionSubmit = (event, reason) => {
+    // 1. Gather the search results that should have redactions created.
+    const results = [];
+    for (let i = 0; i < this.state.checked.length; i++) {
+      if (this.state.checked[i]) {
+        results.push({
+          page: this.props.results[i].page_num,
+          quads: this.props.results[i].quads
+        });
+      }
+    }
+    window.docViewer.trigger('bulkRedaction', {reason, results});
+  };
 
   generateCheckedArray = (length, value) => {
     return (length ? [...Array(length)].map(() => value) : []);

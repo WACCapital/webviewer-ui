@@ -2,7 +2,7 @@ import * as eventListeners from 'src/event-listeners';
 import core from 'core';
 
 export default store => {
-  const { dispatch } = store;
+  const {dispatch} = store;
   const onBeforeDocumentLoaded = eventListeners.onBeforeDocumentLoaded(dispatch);
   const onDisplayModeUpdated = eventListeners.onDisplayModeUpdated(dispatch);
   const onDocumentLoaded = eventListeners.onDocumentLoaded(dispatch);
@@ -21,8 +21,9 @@ export default store => {
   const onStickyAnnotationAdded = eventListeners.onStickyAnnotationAdded(store);
   const onKeyDown = eventListeners.onKeyDown(store);
   const onFullScreenChange = eventListeners.onFullScreenChange(dispatch);
-  const onLayoutChanged = eventListeners.onLayoutChanged(dispatch); 
+  const onLayoutChanged = eventListeners.onLayoutChanged(dispatch);
   const onLocationSelected = eventListeners.onLocationSelected(store);
+  const onBulkRedaction = eventListeners.onBulkRedaction(dispatch);
 
   return {
     addEventHandlers: () => {
@@ -40,6 +41,7 @@ export default store => {
       core.addEventListener('updateAnnotationPermission', onUpdateAnnotationPermission);
       core.addEventListener('annotationSelected', onAnnotationSelected);
       core.addEventListener('annotationChanged', onAnnotationChanged);
+      core.addEventListener('bulkRedaction', onBulkRedaction);
       core.getTool('AnnotationCreateStamp').on('annotationAdded', onStampAnnotationAdded);
       core.getTool('AnnotationCreateSticky').on('annotationAdded', onStickyAnnotationAdded);
       core.getTool('AnnotationCreateSignature').on('locationSelected', onLocationSelected);
@@ -59,11 +61,12 @@ export default store => {
       core.removeEventListener('toolUpdated', onToolUpdated);
       core.removeEventListener('toolModeUpdated', onToolModeUpdated);
       core.removeEventListener('zoomUpdated', onZoomUpdated);
-      core.removeEventListener('pageNumberUpdated', onPageNumberUpdated);
+      core.removeEventListener('bulkRedaction', onPageNumberUpdated);
       core.removeEventListener('layoutChanged', onLayoutChanged);
       core.removeEventListener('updateAnnotationPermission', onUpdateAnnotationPermission);
       core.removeEventListener('annotationSelected', onAnnotationSelected);
       core.removeEventListener('annotationChanged', onAnnotationChanged);
+      core.removeEventListener('searchRedactionComplete', onBulkRedaction);
       core.getTool('AnnotationCreateStamp').off('annotationAdded', onStampAnnotationAdded);
       core.getTool('AnnotationCreateSticky').off('annotationAdded', onStickyAnnotationAdded);
       core.getTool('AnnotationCreateSignature').off('locationSelected', onLocationSelected);
