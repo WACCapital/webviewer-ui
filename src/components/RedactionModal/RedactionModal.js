@@ -55,6 +55,10 @@ class RedactionModal extends React.PureComponent {
   handleCancel = () => {
     const {closeElements} = this.props;
     closeElements(this.elementName);
+    this.setState({
+      inputValue: '',
+      selectValue: ''
+    });
   };
   updateInputValue = event => {
     this.setState({

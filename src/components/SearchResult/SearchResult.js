@@ -16,7 +16,8 @@ class SearchResult extends React.PureComponent {
     activeResultIndex: PropTypes.number.isRequired,
     onClickResult: PropTypes.func.isRequired,
     onSelectResult: PropTypes.func.isRequired,
-    checked: PropTypes.bool
+    checked: PropTypes.bool,
+    isSearching: PropTypes.bool
   };
 
   constructor(props) {
@@ -69,6 +70,7 @@ class SearchResult extends React.PureComponent {
                  type="checkbox"
                  onChange={this.onSelect}
                  label=""
+                 disabled={!this.props.isSearching}
           />
         </div>
         <div className={`SearchResult ${index === activeResultIndex ? 'selected' : ''}`} onClick={this.onClick}>

@@ -13,7 +13,8 @@ class Input extends React.PureComponent {
     label: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ]).isRequired
+    ]).isRequired,
+    disabled: PropTypes.bool
   };
 
   constructor() {
@@ -41,6 +42,7 @@ class Input extends React.PureComponent {
                name={name}
                onChange={onChange}
                defaultChecked={defaultChecked}
+               disabled={this.props.disabled === false}
         />
         <label className="Input" htmlFor={id}>{label}</label>
       </React.Fragment>

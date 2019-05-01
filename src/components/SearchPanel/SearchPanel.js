@@ -169,6 +169,7 @@ class SearchPanel extends React.PureComponent {
             />
             <button className={this.state.isChanged ? '' : 'disabled'}
                     onMouseDown={this.onApplyRedactions}
+                    disabled={!this.state.isChanged}
             >{t('action.redact')}</button>
           </div>
           }
@@ -187,6 +188,7 @@ class SearchPanel extends React.PureComponent {
                               onClickResult={this.onClickResult}
                               onSelectResult={this.onSelectResult}
                               checked={this.state.checked[i]}
+                              isSearching={isSearching}
                 />
               </React.Fragment>
             );
