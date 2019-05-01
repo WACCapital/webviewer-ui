@@ -9,6 +9,7 @@ import OutlinesPanel from 'components/OutlinesPanel';
 import CustomElement from 'components/CustomElement';
 import Icon from 'components/Icon';
 
+import core from 'core';
 import { isTabletOrMobile, isIE11 } from 'helpers/device';
 import getClassName from 'helpers/getClassName';
 import actions from 'actions';
@@ -33,6 +34,7 @@ class LeftPanel extends React.Component {
 
   componentDidMount(){
     document.body.style.setProperty('--left-panel-width', '300px');
+    core.addEventListener('documentUnloaded', this.onDocumentUnloaded);
 
     // we are using css variables to make the panel resizable but IE11 doesn't support it
     if (!isIE11 && this.sliderRef.current) {
@@ -44,6 +46,9 @@ class LeftPanel extends React.Component {
     if (!prevProps.isOpen && this.props.isOpen && isTabletOrMobile()) {
       this.props.closeElement('searchPanel');
     }
+  }
+  componentWillUnmount() {
+    core.removeEventListener('documentUnloaded', this.onDocumentUnloaded);
   }
 
   getDisplay = panel => {
@@ -66,6 +71,10 @@ class LeftPanel extends React.Component {
   closeDrag = () => {
     this.setState({ isSliderActive: false });
   }
+
+  onDocumentUnloaded = () => {
+    this.props.closeElement('leftPanel');
+  };
 
   render() {
     const { isDisabled, closeElement, customPanels } = this.props;
