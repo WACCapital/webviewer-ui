@@ -103,6 +103,7 @@
     "printTotalPageCount_plural": "{{count}} pages",
     "processing": "Processing...",
     "redactAll": "Select all results",
+    "redactPlaceholder": "Enter a reason",
     "searching": "Searching...",
     "searchPlaceholder": "Search comments...",
     "signHere": "Sign here",

@@ -103,6 +103,7 @@
     "printTotalPageCount_plural": "{{count}} страниц",
     "processing": "Обработка документа...",
     "redactAll": "Выбрать все результаты",
+    "redactPlaceholder": "Enter a reason",
     "searching": "Поиск...",
     "searchPlaceholder": "Поиск комментарий...",
     "signHere": "Распишетесь здесь",

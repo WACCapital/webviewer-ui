@@ -104,6 +104,7 @@
     "printTotalPageCount_plural": "{{count}} pagina's",
     "processing": "Bezig...",
     "redactAll": "Selecteer alle resultaten",
+    "redactPlaceholder": "Enter a reason",
     "searching": "Zoeken...",
     "searchPlaceholder": "Zoek opmerkingen...",
     "signHere": "Teken hier",

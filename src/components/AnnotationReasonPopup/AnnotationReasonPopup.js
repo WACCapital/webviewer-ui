@@ -76,7 +76,7 @@ class AnnotationReasonPopup extends React.Component {
             <li className="input-item">
               <div className="input-wrapper">
                 <input type="text"
-                       placeholder={t('message.redactReasonCustom')}
+                       placeholder={t('message.redactPlaceholder')}
                        autoComplete="off"
                        value={this.state.inputValue}
                        onChange={evt => this.updateInputValue(evt)}
