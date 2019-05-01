@@ -166,6 +166,7 @@ class SearchPanel extends React.PureComponent {
                    type="checkbox"
                    onChange={this.onSelectAll}
                    label={t('message.redactAll')}
+                   disabled={!isSearching}
             />
             <button className={this.state.isChanged ? '' : 'disabled'}
                     onMouseDown={this.onApplyRedactions}

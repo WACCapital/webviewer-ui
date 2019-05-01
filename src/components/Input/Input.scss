@@ -7,6 +7,10 @@ input[type='radio'].Input {
   &:checked + label:after {
     background: $gray20;
   }
+
+  &:disabled + label::before {
+    background-color: $gray12;
+  }
 }
 
 label.Input {
