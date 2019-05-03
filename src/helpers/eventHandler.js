@@ -61,12 +61,12 @@ export default store => {
       core.removeEventListener('toolUpdated', onToolUpdated);
       core.removeEventListener('toolModeUpdated', onToolModeUpdated);
       core.removeEventListener('zoomUpdated', onZoomUpdated);
-      core.removeEventListener('bulkRedaction', onPageNumberUpdated);
+      core.removeEventListener('pageNumberUpdated', onPageNumberUpdated);
       core.removeEventListener('layoutChanged', onLayoutChanged);
       core.removeEventListener('updateAnnotationPermission', onUpdateAnnotationPermission);
       core.removeEventListener('annotationSelected', onAnnotationSelected);
       core.removeEventListener('annotationChanged', onAnnotationChanged);
-      core.removeEventListener('searchRedactionComplete', onBulkRedaction);
+      core.removeEventListener('bulkRedaction', onBulkRedaction);
       core.getTool('AnnotationCreateStamp').off('annotationAdded', onStampAnnotationAdded);
       core.getTool('AnnotationCreateSticky').off('annotationAdded', onStickyAnnotationAdded);
       core.getTool('AnnotationCreateSignature').off('locationSelected', onLocationSelected);
